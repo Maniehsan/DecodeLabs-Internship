@@ -1,0 +1,6 @@
+Key Findings — SQL Data Analysis
+I used SQL to query the same 1,189 orders from the DecodeLabs dataset, this time using SELECT, WHERE, GROUP BY, and aggregate functions instead of Excel formulas.
+Filtering with WHERE OrderStatus = 'Cancelled' confirmed 247 orders were cancelled — matching what I found earlier in Excel, this time verified with a database query.
+Grouping by Product showed Chair generates the most total revenue ($192,726), but Laptop has the highest average order value ($1,112) — meaning Chair sells more often, while Laptop orders tend to be individually pricier. Sorting by TotalPrice also re-confirmed the same 6 bulk orders (5-unit purchases) as the highest-value transactions found during the outlier analysis in Project 2.
+Along the way, I ran into a real issue: TotalPrice had been imported as text instead of numbers, which silently broke ORDER BY (sorting alphabetically instead of numerically) even though SUM/AVG still worked. I fixed it using CAST(TotalPrice AS REAL) to force proper numeric sorting — a reminder that data types matter even after a dataset has already been "cleaned."
+Takeaway: SQL let me verify the same business insights from Project 2 through a completely different method, and also taught me to double-check column data types before trusting query results.
